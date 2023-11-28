@@ -1,0 +1,19 @@
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v3.1/all") 
+request.send();
+request.onload=function()
+{
+    var res=JSON.parse(request.response);
+    console.log(res);   
+    var coun=res.filter((ele)=>(ele.continents=="Asia"))
+    console.log(coun);
+    var pop=res.filter((count)=>(count.population<=200000))
+    console.log(pop)
+    var cur=res.filter((usd)=>usd.currencies="USD")
+    console.log(cur)
+    var totalpop=res.reduce((acc,cv)=>acc+cv.population,0)
+    console.log(totalpop)
+     res.forEach(capital =>console.log(capital))
+     res.forEach(flag=>console.log(flag))
+     res.forEach(name=>console.log(name))
+}
